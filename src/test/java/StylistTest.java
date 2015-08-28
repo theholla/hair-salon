@@ -24,7 +24,7 @@ public class StylistTest {
   }
 
   @Test
-  public void save_savesIntoDatabase_true() {
+  public void save_savesIntoDatabase() {
     Stylist testStylist = new Stylist("Sally", "434-555-3342");
     testStylist.save();
     assertEquals("Sally", Stylist.getFirstDBEntry().getName());
@@ -44,6 +44,15 @@ public class StylistTest {
     Stylist testStylist = new Stylist("Hector", "444-222-3333");
     Stylist nextStylist = new Stylist("Hector", "444-222-3333");
     assertTrue(testStylist.equals(nextStylist));
+  }
+
+  @Test
+  public void equals_returnsFalseIfDifferentName_false() {
+    Stylist testStylist = new Stylist("Darin", "222-333-2232");
+    testStylist.save();
+    Stylist nextStylist = new Stylist("Michelle", "222-111-3333");
+    nextStylist.save();
+    assertEquals(false, testStylist.getName().equals(nextStylist.getName()));
   }
 
   @Test
