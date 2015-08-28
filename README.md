@@ -18,7 +18,7 @@ You may add hair stylists and clients to this application, and assign multiple c
 In PSQL:
 CREATE DATABASE hair_salon;
 CREATE TABLE stylists (id SERIAL PRIMARY KEY, name VARCHAR, phone VARCHAR(12));
-CREATE TABLE clients (id SERIAL PRIMARY KEY, client_name VARCHAR, client_phone VARCHAR(12), appt_date DATE, appt_time TIME);
+CREATE TABLE clients (id SERIAL PRIMARY KEY, name VARCHAR, phone VARCHAR(12), appt_date DATE, appt_time TIME);
 
 ## Technologies Used
 
