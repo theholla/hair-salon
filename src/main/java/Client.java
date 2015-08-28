@@ -1,7 +1,7 @@
 import org.sql2o.*;
 import java.util.List;
 
-public class Client implements Person {
+public class Client {
   private int id;
   private String name;
   private String phone;
@@ -13,6 +13,10 @@ public class Client implements Person {
     this.stylist_id = stylist_id;
   }
 
+  public int getId() {
+    return id;
+  }
+
   public String getName() {
     return name;
   }
@@ -21,20 +25,8 @@ public class Client implements Person {
     return phone;
   }
 
-  public int getId() {
-    return id;
-  }
-
   public int getStylistId() {
     return stylist_id;
-  }
-
-
-  public static List<Client> all() {
-    String sql = "SELECT name, phone, stylist_id FROM clients";
-    try(Connection con = DB.sql2o.open()) {
-      return con.createQuery(sql).executeAndFetch(Client.class);
-    }
   }
 
   public static Client getFirstDBEntry() {
@@ -43,8 +35,9 @@ public class Client implements Person {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(name, phone, stylist_id) VALUES (:name, :phone, stylist_id)";
+      String sql = "INSERT INTO clients(id, name, phone, stylist_id) VALUES (:id, :name, :phone, :stylist_id)";
       this.id = (int) con.createQuery(sql, true)
+      .addParameter("id", this.id)
       .addParameter("name", this.name)
       .addParameter("phone", this.phone)
       .addParameter("stylist_id", this.stylist_id)
@@ -59,9 +52,17 @@ public class Client implements Person {
       return false;
     } else {
       Client newClient = (Client) otherClient;
-      return this.getName().equals(newClient.getName()) &&
+      return this.getId() == newClient.getId() &&
+             this.getName().equals(newClient.getName()) &&
              this.getPhone().equals(newClient.getPhone()) &&
              this.getStylistId() == newClient.getStylistId();
+    }
+  }
+
+  public static List<Client> all() {
+    String sql = "SELECT id, name, phone, stylist_id FROM clients";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Client.class);
     }
   }
 
