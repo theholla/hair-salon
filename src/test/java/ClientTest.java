@@ -33,34 +33,34 @@ public class ClientTest {
 
   @Test
   public void save_assignsIdToObject() {
-  //   Client testClient = new Client("Sally", "434-555-3342", 3);
-  //   testClient.save();
-  //   Client savedClient = Client.all().get(0);
-  //   assertTrue(testClient.getId(), savedClient.getId());
+    Client testClient = new Client("Sally", "434-555-3342", 3);
+    testClient.save();
+    Client savedClient = Client.getFirstDBEntry();
+    assertEquals(testClient.getId(), savedClient.getId());
   }
 
-  // @Test
-  // public void equals_returnsTrueIfSame() {
-  //   Client testClient = new Client("Hector", "444-222-3333", 1);
-  //   Client nextClient = new Client("Hector", "444-222-3333", 1);
-  //   assertTrue(testClient.equals(nextClient));
-  // }
+  @Test
+  public void equals_returnsTrueIfSame() {
+    Client testClient = new Client("Hector", "444-222-3333", 1);
+    Client nextClient = new Client("Hector", "444-222-3333", 1);
+    assertTrue(testClient.equals(nextClient));
+  }
 
-  // @Test
-  // public void equals_returnsFalseIfDifferentName_false() {
-  //   Client testClient = new Client("Darin", "222-333-2232", 2);
-  //   testClient.save();
-  //   Client nextClient = new Client("Michelle", "222-111-3333", 3);
-  //   nextClient.save();
-  //   assertEquals(false, testClient.getName().equals(nextClient.getName()));
-  // }
-  //
-  // @Test
-  // public void find_findsClientInDatabase() {
-  //   Client testClient = new Client("Mellow", "143-111-3333", 1);
-  //   testClient.save();
-  //   Client savedClient = Client.find(testClient.getId());
-  //   assertEquals(savedClient.getName(), "Mellow");
-  // }
+  @Test
+  public void equals_returnsFalseIfDifferentName_false() {
+    // Client testClient = new Client("Hector", "444-222-3333", 1);
+    // testClient.save();
+    // Client nextClient = new Client("Huynh", "222-333-5543", 2);
+    // nextClient.save();
+    // assertEquals(false, testClient.getName().equals(nextClient.getName()));
+  }
+
+  @Test
+  public void find_findsClientInDatabase() {
+    Client testClient = new Client("Mellow", "143-111-3333", 1);
+    testClient.save();
+    Client savedClient = Client.find(testClient.getId());
+    assertEquals(savedClient.getName(), "Mellow");
+  }
 
 }
