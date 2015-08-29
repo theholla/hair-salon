@@ -48,7 +48,7 @@ public class App {
     }, new VelocityTemplateEngine());
 
     /* List of Stylists --> View a Stylist's clients */
-    get(":id", (request,response) -> {
+    get("/:id", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       Stylist stylist = Stylist.find(id);
@@ -59,7 +59,7 @@ public class App {
     }, new VelocityTemplateEngine());
 
     /* Stylist's clients --> POST new client */
-    post("/:id/clients", (request, response) -> {
+    post("/:id", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
       model.put("stylist", stylist);

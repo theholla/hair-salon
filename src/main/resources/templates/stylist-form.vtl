@@ -1,11 +1,13 @@
 <h1 class="well">Add a Stylist</h1>
 
-<form action="/stylists" method="post">
-  <label for="name">Stylist name:</label>
-  <input id="name" name="name" type="text">
+<form class="form-inline" action="/stylists" method="post">
+  <div class="form-group">
+    <label class="sr-only" for="name">Stylist's name</label>
+    <input id="name" name="name" type="text" class="form-control" placeholder="name">
 
-  <label for="phone">Stylist phone number:</label>
-  <input id="phone" name="phone" type="text">
+    <label class="sr-only" for="phone">Stylist's phone number</label>
+    <input id="phone" name="phone" type="text" class="form-control" placeholder="phone">
 
-  <button type="submit" class="btn btn-success">Add Stylist</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
 </form>
