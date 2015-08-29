@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
+import java.util.Arrays;
 
 public class StylistTest {
   @Rule
@@ -32,11 +33,10 @@ public class StylistTest {
 
   @Test
   public void save_assignsIdToObject() {
-    // how to reset ID values back to 0 after tests?
-    // Stylist testStylist = new Stylist("Sally", "434-555-3342");
-    // testStylist.save();
-    // Stylist savedStylist = Stylist.getFirstDBEntry();
-    // assertEquals(savedStylist.getId(), testStylist.getId());
+    Stylist testStylist = new Stylist("Sally", "434-555-3342");
+    testStylist.save();
+    Stylist savedStylist = Stylist.getFirstDBEntry();
+    assertEquals(savedStylist.getId(), testStylist.getId());
   }
 
   @Test
@@ -47,20 +47,23 @@ public class StylistTest {
   }
 
   @Test
-  public void equals_returnsFalseIfDifferentName_false() {
-    Stylist testStylist = new Stylist("Darin", "222-333-2232");
-    testStylist.save();
-    Stylist nextStylist = new Stylist("Michelle", "222-111-3333");
-    nextStylist.save();
-    assertEquals(false, testStylist.getName().equals(nextStylist.getName()));
-  }
-
-  @Test
   public void find_findsStylistInDatabase() {
     Stylist testStylist = new Stylist("Marina", "222-111-3333");
     testStylist.save();
     Stylist savedStylist = Stylist.find(testStylist.getId());
     assertTrue(testStylist.equals(savedStylist));
+  }
+
+  @Test
+  public void getClients_retrievesAllClientsFromDatabase_clientsList() {
+    Stylist testStylist = new Stylist("Darin", "222-333-2232");
+    testStylist.save();
+    Client firstClient = new Client("Mulloy", "333-222-1321", testStylist.getId());
+    firstClient.save();
+    Client nextClient = new Client("Mallory", "111-344-1321", testStylist.getId());
+    nextClient.save();
+    Client[] clients = new Client[] { firstClient, nextClient };
+    assertTrue(testStylist.getClients().containsAll(Arrays.asList(clients)));
   }
 
 }

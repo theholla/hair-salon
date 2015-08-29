@@ -1,0 +1,9 @@
+<h2 class="well">stylist: $stylist.getName()</h2>
+
+<ol>
+  #foreach ($client in $stylist.getClients())
+      <li><h3>$client.getName()</h3></li>
+  #end
+</ol>
+<hr/>
+<a class="btn btn-primary" href="/stylists/$stylist.getId()/clients/new" role="button">Assign another client to $stylist.getName()</a>

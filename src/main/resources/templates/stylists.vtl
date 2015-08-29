@@ -1,0 +1,7 @@
+<h2 class="well">Stylists</h2>
+
+<ol>
+#foreach ($stylist in $stylists)
+  <h3><li><a href="/stylists/$stylist.getId()">$stylist.getName()</li></a></h3>
+#end
+</ol>

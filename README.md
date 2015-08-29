@@ -19,7 +19,7 @@ In PSQL:
 CREATE DATABASE hair_salon;
 \c hair_salon;
 CREATE TABLE stylists (id SERIAL PRIMARY KEY, name VARCHAR, phone VARCHAR(12));
-CREATE TABLE clients (id SERIAL PRIMARY KEY, name VARCHAR, phone VARCHAR(12), stylist_id INT);
+CREATE TABLE clients (id SERIAL PRIMARY KEY, client_name VARCHAR, client_phone VARCHAR(12), stylist_id INT);
 
 ## Technologies Used
 

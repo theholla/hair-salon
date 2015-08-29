@@ -46,14 +46,6 @@ public class ClientTest {
     assertTrue(testClient.equals(nextClient));
   }
 
-  @Test
-  public void equals_returnsFalseIfDifferentName_false() {
-    // Client testClient = new Client("Hector", "444-222-3333", 1);
-    // testClient.save();
-    // Client nextClient = new Client("Huynh", "222-333-5543", 2);
-    // nextClient.save();
-    // assertEquals(false, testClient.getName().equals(nextClient.getName()));
-  }
 
   @Test
   public void find_findsClientInDatabase() {
@@ -61,6 +53,29 @@ public class ClientTest {
     testClient.save();
     Client savedClient = Client.find(testClient.getId());
     assertEquals(savedClient.getName(), "Mellow");
+  }
+
+  // @Test
+  // public void save_savesIntoDatabase_true() {
+  //   Client myClient = new Client("Mellow", "143-111-3333", 1);
+  //   assertEquals(Client.all().get(0).getName(), "Mellow");
+  // }
+
+  // @Test
+  // public void find_findsTaskInDatabase_true() {
+  //   Task myTask = new Task("Mow the lawn", 1);
+  //   Task savedTask = Task.find(myTask.getId());
+  //   assertEquals(savedTask.getDescription(), "Mow the lawn");
+  // }
+  //
+  @Test
+  public void save_savesStylistIdIntoDB_true() {
+    Stylist testStylist = new Stylist("Sally", "434-555-3342");
+    testStylist.save();
+    Client testClient = new Client("Mellow", "143-111-3333", testStylist.getId());
+    testClient.save();
+    Client savedClient = Client.find(testClient.getId());
+    assertEquals(savedClient.getStylistId(), testStylist.getId());
   }
 
 }

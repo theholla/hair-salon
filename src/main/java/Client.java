@@ -3,13 +3,13 @@ import java.util.List;
 
 public class Client {
   private int id;
-  private String name;
-  private String phone;
+  private String client_name;
+  private String client_phone;
   private int stylist_id;
 
-  public Client(String name, String phone, int stylist_id) {
-    this.name = name;
-    this.phone = phone;
+  public Client(String client_name, String client_phone, int stylist_id) {
+    this.client_name = client_name;
+    this.client_phone = client_phone;
     this.stylist_id = stylist_id;
   }
 
@@ -18,11 +18,11 @@ public class Client {
   }
 
   public String getName() {
-    return name;
+    return client_name;
   }
 
   public String getPhone() {
-    return phone;
+    return client_phone;
   }
 
   public int getStylistId() {
@@ -35,11 +35,10 @@ public class Client {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO clients(id, name, phone, stylist_id) VALUES (:id, :name, :phone, :stylist_id)";
+      String sql = "INSERT INTO clients(client_name, client_phone, stylist_id) VALUES (:client_name, :client_phone, :stylist_id)";
       this.id = (int) con.createQuery(sql, true)
-      .addParameter("id", this.id)
-      .addParameter("name", this.name)
-      .addParameter("phone", this.phone)
+      .addParameter("client_name", this.client_name)
+      .addParameter("client_phone", this.client_phone)
       .addParameter("stylist_id", this.stylist_id)
       .executeUpdate()
       .getKey();
@@ -60,7 +59,7 @@ public class Client {
   }
 
   public static List<Client> all() {
-    String sql = "SELECT id, name, phone, stylist_id FROM clients";
+    String sql = "SELECT id, client_name, client_phone, stylist_id FROM clients";
     try(Connection con = DB.sql2o.open()) {
       return con.createQuery(sql).executeAndFetch(Client.class);
     }
