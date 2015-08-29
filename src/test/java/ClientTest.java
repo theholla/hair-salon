@@ -55,19 +55,21 @@ public class ClientTest {
     assertEquals(savedClient.getName(), "Mellow");
   }
 
-  // @Test
-  // public void save_savesIntoDatabase_true() {
-  //   Client myClient = new Client("Mellow", "143-111-3333", 1);
-  //   assertEquals(Client.all().get(0).getName(), "Mellow");
-  // }
+  @Test
+  public void save_savesIntoListOfClients_true() {
+    Client testClient = new Client("Mellow", "143-111-3333", 1);
+    testClient.save();
+    assertEquals(Client.getFirstDBEntry().getName(), "Mellow");
+  }
 
-  // @Test
-  // public void find_findsTaskInDatabase_true() {
-  //   Task myTask = new Task("Mow the lawn", 1);
-  //   Task savedTask = Task.find(myTask.getId());
-  //   assertEquals(savedTask.getDescription(), "Mow the lawn");
-  // }
-  //
+  @Test
+  public void find_findsClientFromDatabase_true() {
+    Client testClient = new Client("Mellow", "143-111-3333", 1);
+    testClient.save();
+    Client savedClient = Client.find(testClient.getId());
+    assertEquals(savedClient.getName(), "Mellow");
+  }
+
   @Test
   public void save_savesStylistIdIntoDB_true() {
     Stylist testStylist = new Stylist("Sally", "434-555-3342");
