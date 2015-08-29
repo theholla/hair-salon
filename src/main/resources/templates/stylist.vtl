@@ -2,14 +2,15 @@
 
 <ol>
   #foreach ($client in $stylist.getClients())
-    <h2><li>$client.getName() - $client.getPhone()</li></h2>
+    <h3><li>$client.getName()</h3>
+    <h4>$client.getPhone()</h4></li>
   #end
 </ol>
 <hr/>
 
 <h3>Another client for $stylist.getName(), please!</h3>
 
-<form class="form-inline" action="/stylists/$stylist.getId()/clients" method="post">
+<form class="form-inline" action="/$stylist.getId()" method="post">
   <div class="form-group">
     <input id="stylistId" name="stylistId" type="hidden" value="$stylist.getId()">
 
