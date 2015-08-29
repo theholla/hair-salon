@@ -70,12 +70,31 @@ public class Stylist {
   }
 
   public List<Client> getClients() {
-  try(Connection con = DB.sql2o.open()) {
-    String sql = "SELECT * FROM clients where stylist_id=:id";
-    return con.createQuery(sql)
-      .addParameter("id", this.id)
-      .executeAndFetch(Client.class);
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM clients where stylist_id=:id";
+      return con.createQuery(sql)
+        .addParameter("id", this.id)
+        .executeAndFetch(Client.class);
+    }
   }
-}
+
+  public void update(String stylist_phone) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stylists SET stylist_phone = :stylist_phone WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .addParameter("stylist_phone", stylist_phone)
+        .executeUpdate();
+    }
+  }
+
+  public void delete() {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "DELETE FROM stylists WHERE id = :id;";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
 
 }
