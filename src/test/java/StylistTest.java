@@ -19,13 +19,13 @@ public class StylistTest {
   }
 
   @Test
-  public void stylist_returnsStylist_Name() {
+  public void stylist_returnsStylist_name() {
     Stylist testStylist = new Stylist("Schmoopy", "434-224-6643");
     assertEquals("Schmoopy", testStylist.getName());
   }
 
   @Test
-  public void save_savesIntoDatabase() {
+  public void save_savesIntoListOfStylists_name() {
     Stylist testStylist = new Stylist("Sally", "434-555-3342");
     testStylist.save();
     assertEquals("Sally", Stylist.getFirstDBEntry().getName());
@@ -40,14 +40,14 @@ public class StylistTest {
   }
 
   @Test
-  public void equals_returnsTrueIfSame() {
+  public void equals_returnsTrueIfSame_true() {
     Stylist testStylist = new Stylist("Hector", "444-222-3333");
     Stylist nextStylist = new Stylist("Hector", "444-222-3333");
     assertTrue(testStylist.equals(nextStylist));
   }
 
   @Test
-  public void find_findsStylistInDatabase() {
+  public void find_findsStylistInDatabase_true() {
     Stylist testStylist = new Stylist("Marina", "222-111-3333");
     testStylist.save();
     Stylist savedStylist = Stylist.find(testStylist.getId());

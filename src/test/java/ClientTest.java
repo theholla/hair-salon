@@ -25,7 +25,7 @@ public class ClientTest {
   }
 
   @Test
-  public void save_savesIntoDatabase_true() {
+  public void save_savesIntoDatabase() {
     Client testClient = new Client("Sally", "434-555-3342", 3);
     testClient.save();
     assertTrue(Client.getFirstDBEntry().equals(testClient));
@@ -56,14 +56,14 @@ public class ClientTest {
   }
 
   @Test
-  public void save_savesIntoListOfClients_true() {
+  public void save_savesIntoListOfClients() {
     Client testClient = new Client("Mellow", "143-111-3333", 1);
     testClient.save();
     assertEquals(Client.getFirstDBEntry().getName(), "Mellow");
   }
 
   @Test
-  public void find_findsClientFromDatabase_true() {
+  public void find_findsClientFromDatabase() {
     Client testClient = new Client("Mellow", "143-111-3333", 1);
     testClient.save();
     Client savedClient = Client.find(testClient.getId());
@@ -71,7 +71,7 @@ public class ClientTest {
   }
 
   @Test
-  public void save_savesStylistIdIntoDB_true() {
+  public void save_savesStylistIdIntoDB() {
     Stylist testStylist = new Stylist("Sally", "434-555-3342");
     testStylist.save();
     Client testClient = new Client("Mellow", "143-111-3333", testStylist.getId());

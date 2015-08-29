@@ -64,6 +64,8 @@ public class Stylist {
         .addParameter("id", id)
         .executeAndFetchFirst(Stylist.class);
       return stylist;
+    } catch (IndexOutOfBoundsException exception) {
+      return null;
     }
   }
 
