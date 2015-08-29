@@ -1,9 +1,24 @@
-<h2 class="well">stylist: $stylist.getName()</h2>
+<h1 class="well">$stylist.getName()'s clients</h1>
 
 <ol>
   #foreach ($client in $stylist.getClients())
-      <li><h3>$client.getName()</h3></li>
+    <h2><li>$client.getName() - $client.getPhone()</li></h2>
   #end
 </ol>
 <hr/>
-<a class="btn btn-primary" href="/stylists/$stylist.getId()/clients/new" role="button">Assign another client to $stylist.getName()</a>
+
+<h3>Another client for $stylist.getName(), please!</h3>
+
+<form class="form-inline" action="/stylists/$stylist.getId()/clients" method="post">
+  <div class="form-group">
+    <input id="stylistId" name="stylistId" type="hidden" value="$stylist.getId()">
+
+    <label class="sr-only" for="name">Client's name</label>
+    <input id="name" name="name" type="text" class="form-control" placeholder="name">
+
+    <label class="sr-only" for="phone">Client's phone number</label>
+    <input id="phone" name="phone" type="text" class="form-control" placeholder="phone">
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>

@@ -38,24 +38,43 @@ public class App {
     /* Add a new Stylist --> POST new stylist */
     post("/stylists", (request, response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
-      String theirName = request.queryParams("name");
-      String theirNumber = request.queryParams("number");
-      Stylist stylist = new Stylist(theirName, theirNumber);
+      String stylistName = request.queryParams("name");
+      String stylistPhone = request.queryParams("phone");
+      Stylist stylist = new Stylist(stylistName, stylistPhone);
       stylist.save();
       model.put("stylists", Stylist.all());
       model.put("template", "templates/stylists.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
 
-    /* List of Stylists --> View a Stylist and their clients */
-    get("/stylists/:id", (request,response) -> {
+    /* List of Stylists --> View a Stylist's clients */
+    get("stylists/:id", (request,response) -> {
       HashMap<String, Object> model = new HashMap<String, Object>();
       int id = Integer.parseInt(request.params("id"));
       Stylist stylist = Stylist.find(id);
+      String name = stylist.getName();
       model.put("stylist", stylist);
       model.put("template", "templates/stylist.vtl");
       return new ModelAndView(model, layout);
     }, new VelocityTemplateEngine());
+
+    /* Stylist's clients --> POST new client */
+    post("/stylists/:id/clients", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+
+      Stylist stylist = Stylist.find(Integer.parseInt(request.queryParams("stylistId")));
+      model.put("stylist", stylist);
+
+      String clientName = request.queryParams("name");
+      String clientPhone = request.queryParams("phone");
+      Client newClient = new Client(clientName, clientPhone, stylist.getId());
+      newClient.save();
+
+      model.put("clients", Client.all());
+      model.put("template", "templates/stylist.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
 
   }
 }
