@@ -15,11 +15,11 @@ You may add hair stylists and clients to this application, and assign multiple c
 * This app uses Spark and Velocity for coordinating its fron end
 * You may use the database included with this file. Otherwise, create your own using the following information:
 
-In PSQL:
-CREATE DATABASE hair_salon;
-\c hair_salon;
-CREATE TABLE stylists (id SERIAL PRIMARY KEY, name VARCHAR, phone VARCHAR(12));
-CREATE TABLE clients (id SERIAL PRIMARY KEY, client_name VARCHAR, client_phone VARCHAR(12), stylist_id INT);
+**In PSQL:**
+
+* CREATE DATABASE hair_salon;
+* CREATE TABLE stylists (id SERIAL PRIMARY KEY, name VARCHAR, phone VARCHAR(12));
+* CREATE TABLE clients (id SERIAL PRIMARY KEY, client_name VARCHAR, client_phone VARCHAR(12), stylist_id INT);
 
 ## Technologies Used
 
