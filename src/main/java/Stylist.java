@@ -78,7 +78,7 @@ public class Stylist {
     }
   }
 
-  public void update(String stylist_phone) {
+  public void updateStylist(String stylist_phone) {
     try(Connection con = DB.sql2o.open()) {
       String sql = "UPDATE stylists SET stylist_phone = :stylist_phone WHERE id = :id";
       con.createQuery(sql)
@@ -88,7 +88,7 @@ public class Stylist {
     }
   }
 
-  public void delete() {
+  public void deleteStylist() {
     try(Connection con = DB.sql2o.open()) {
     String sql = "DELETE FROM stylists WHERE id = :id;";
       con.createQuery(sql)

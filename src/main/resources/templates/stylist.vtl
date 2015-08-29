@@ -3,9 +3,12 @@
 <ol>
   #foreach ($client in $stylist.getClients())
     <h3><li>$client.getName()</h3>
-    <h4>$client.getPhone()</h4></li>
+    <h4>$client.getPhone()</h4>
+    <h4><a class="btn btn-default" href="/clients/$client.getId()/update">Update</a>
+          <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></h4></li>
   #end
 </ol>
+
 <hr/>
 
 <h3>Another client for $stylist.getName(), please!</h3>

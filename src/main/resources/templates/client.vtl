@@ -1,0 +1,19 @@
+<h1 class="well">Client: $client.getName()</h1>
+
+  <h3>$client.getName()</h3>
+  <h4>$client.getPhone()</h4>
+
+<form class="form-inline" action="/clients/$client.getId()/update" method="post">
+  <div class="form-group">
+    <input id="stylistId" name="stylistId" type="hidden" value="$stylist.getId()">
+
+    <label class="sr-only" for="name">Client's name</label>
+    <input id="name" name="name" type="text" class="form-control" placeholder="name">
+
+    <label class="sr-only" for="phone">Client's phone number</label>
+    <input id="phone" name="phone" type="text" class="form-control" placeholder="phone">
+
+    <button type="submit" class="btn btn-primary">Update client
+      <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></button>
+  </div>
+</form>
